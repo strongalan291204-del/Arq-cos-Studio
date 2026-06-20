@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles Proyecto</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/pages.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader">
+    <div class="preloader-content">
+        <div class="preloader-logo">A+</div>
+        <div class="preloader-text">CREATION</div>
+        <div class="preloader-bar">
+            <div class="preloader-progress"></div>
+        </div>
+    </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- NAV -->
+<header class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">A+</span>
+            <span class="logo-text">CREATION</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="proyectos.html" class="nav-link">Proyectos</a>
+            <a href="servicios.html" class="nav-link">Servicios</a>
+            <a href="ubicacion.html" class="nav-link">Ubicación</a>
+            <a href="contacto.html" class="nav-link">Contacto</a>
+        </nav>
+
+        <button class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<!-- HERO DETALLE -->
+<section class="detail-hero">
+    <h1 id="project-title">Proyecto</h1>
+    <p id="project-desc">Diseño arquitectónico moderno</p>
+</section>
+
+<!-- CONTENIDO DETALLE -->
+<section class="detail-section">
+
+    <div class="detail-container">
+
+        <!-- IMAGEN -->
+        <div class="detail-image">
+            <img id="project-img" src="/assets/img1.jpeg" alt="">
+        </div>
+
+        <!-- INFO -->
+        <div class="detail-info">
+
+            <h2 id="project-title">Casa Moderna</h2>
+
+            <p class="detail-description" id="project-desc">
+                Descripción del proyecto...
+            </p>
+
+            <div class="detail-meta" id="project-features"></div>
+
+            <div class="detail-price" id="project-price">
+                $600 MXN
+            </div>
+
+            <button class="btn-primary" id="add-to-cart">
+                Agregar al carrito
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">A+</span>
+                <span class="logo-text">CREATION</span>
+            </div>
+            <p class="footer-tagline">
+                Construyendo el futuro a través de la arquitectura
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2026 A+CREATION</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/detail.js"></script>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.getElementById("add-to-cart").addEventListener("click", () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (projects[id]) {
+        cart.push(projects[id]);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+    }
+});
+
+function updateCart() {
+    const count = document.getElementById("cart-count");
+    if (count) count.textContent = cart.length;
+}
+
+updateCart();
+</script>
+
+</body>
+</html>
